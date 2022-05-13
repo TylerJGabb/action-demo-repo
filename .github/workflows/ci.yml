@@ -56,6 +56,9 @@ jobs:
       with:
         name: jarfile
 
+    - name: where is the jar file???
+      run: ls -R
+
     - uses: actions/checkout@v3
 
     - name: Set up QEMU
