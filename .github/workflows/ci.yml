@@ -43,6 +43,8 @@ jobs:
     - name: Upload build
       uses: actions/upload-artifact@v3
       with:
+        # while the "name" of the artifact is "jarfile"
+        # the name of the file when downloaded is actiondemo-0.0.1-SNAPSHOT.jar
         name: jarfile
         path: ./build/libs/actiondemo-0.0.1-SNAPSHOT.jar
 

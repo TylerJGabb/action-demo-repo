@@ -2,7 +2,7 @@ FROM openjdk:11
 
 EXPOSE 8080
 
-COPY ./jarfile /usr/app/
+COPY ./actiondemo-0.0.1-SNAPSHOT.jar /usr/app/
 WORKDIR /usr/app
 
-ENTRYPOINT ["java", "-jar", "jarfile"]
+ENTRYPOINT ["java", "-jar", "actiondemo-0.0.1-SNAPSHOT.jar"]
