@@ -57,6 +57,7 @@ jobs:
     - uses: actions/download-artifact@v3
       with:
         name: jarfile
+        path: path/to/artifact
 
     - name: where is the jar file???
       run: ls -R
