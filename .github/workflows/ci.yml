@@ -42,9 +42,10 @@ jobs:
         name: my-artifact
         path: ./build/libs/actiondemo-0.0.1-SNAPSHOT.jar
 
-  push_up:
-    runs-on: ubuntu-latest
+  push:
+    name: abc
     needs: build
+    runs-on: ubuntu-latest
 
     - uses: actions/checkout@v3
 
