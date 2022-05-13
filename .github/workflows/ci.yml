@@ -72,7 +72,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v3
       with:
-        context: ./artifacts
+        context: .
         push: true
         tags: tylerjgabb/action-demo-repo:latest
 
