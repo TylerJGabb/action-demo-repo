@@ -24,6 +24,7 @@ jobs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
       outFromEnvVar1: ${{ steps.stepEnvVar.outputs.out1 }}
+      outFromEnvVar2: ${{ steps.stepEndVar.outputs.out2 }}
     steps:
       - id: step1
         run: echo "::set-output name=test::hello"
@@ -32,7 +33,9 @@ jobs:
       - id: stepEnvVar
         run: |
           ENV_VAR=$(echo "this is inside an environment variable")
+          SECOND_OUT=$(echo "this is a second output from stepEnvVar")
           echo "::set-output name=out1::$ENV_VAR"
+          echo "::set-output name=out2::$SECOND_OUT"
   job2:
     runs-on: ubuntu-latest
     needs: job1
@@ -40,6 +43,7 @@ jobs:
       - run: |
           echo ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}
           echo will it work? ${{ needs.job1.outputs.outFromEnvVar1 }}
+          echo second output from stepEnvVar ${{ needs.job1.outputs.outFromEnvVar2 }}
 
 # jobs:
 #   build:
