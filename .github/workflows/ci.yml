@@ -31,7 +31,7 @@ jobs:
         run: echo "::set-output name=test::world"
       - id: stepEnvVar
         run: |
-          echo "this is inside an environment variable" >> $ENV_VAR
+          ENV_VAR=$(echo "this is inside an environment variable")
           echo "::set-output name=out1::$ENV_VAR"
   job2:
     runs-on: ubuntu-latest
