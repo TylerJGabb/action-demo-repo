@@ -60,7 +60,9 @@ jobs:
         path: path/to/artifact
 
     - name: where is the jar file???
-      run: ls -R
+      run: |
+        echo $(pwd)
+        ls -R $(pwd)
 
     - uses: actions/checkout@v3
 
