@@ -47,9 +47,13 @@ jobs:
         path: ./build/libs/actiondemo-0.0.1-SNAPSHOT.jar
 
   push:
-    if: ${{ false }}
+    # if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: jarfile
 
     - uses: actions/checkout@v3
 
