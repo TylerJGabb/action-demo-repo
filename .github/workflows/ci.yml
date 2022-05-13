@@ -52,6 +52,7 @@ jobs:
       name: Download Artifact
       with:
         name: my-artifact 
+        path: /artifacts
 
     - name: Display structure of downloaded files
       run: ls -R  
