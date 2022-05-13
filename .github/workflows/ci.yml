@@ -24,7 +24,7 @@ jobs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
       outFromEnvVar1: ${{ steps.stepEnvVar.outputs.out1 }}
-      outFromEnvVar2: ${{ steps.stepEndVar.outputs.out2 }}
+      outFromEnvVar2: ${{ steps.stepEnvVar.outputs.out2 }}
     steps:
       - id: step1
         run: echo "::set-output name=test::hello"
