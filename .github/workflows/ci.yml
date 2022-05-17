@@ -33,17 +33,24 @@ jobs:
         run: echo '${{ toJSON(strategy) }}'
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'
+      # - name: Truncate Sha
+      #   uses: 2428392/gh-truncate-string-action@v1.1.0
+      #   id: truncatedString
+      #   with:
+      #     stringToTruncate: "${{ github.sha }}"
+      #     maxLength: 7
+      #   - name: Echo string
+      #     run: echo ${{ steps.truncatedString.outputs.string }}
       - name: Truncate Sha
         uses: 2428392/gh-truncate-string-action@v1.1.0
-        id: truncatedString
+        id: truncatedSha
         with:
           stringToTruncate: "${{ github.sha }}"
           maxLength: 7
-        - name: Echo string
-          run: echo ${{ steps.truncatedString.outputs.string }}
       - name: Make Version Tag
-        run: | 
-          echo "${{ github.head_ref }}-${{ steps.truncatedString.outputs.string }}"
+        run: |
+          echo "${{ github.head_ref }}-${{ steps.truncatedSha.outputs.string }}"
+
 # jobs:
 #   build:
 #     runs-on: ubuntu-latest
