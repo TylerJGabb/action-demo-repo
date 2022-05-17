@@ -35,6 +35,8 @@ jobs:
       tag: ${{ steps.set-tag.outputs.TAG }}
 
   print-version:
+    runs-on: ubuntu-latest
+    needs: determine-image-tag
     steps:
       - run: echo ${{ jobs.determine-image-tag.outputs.tag }}
 
