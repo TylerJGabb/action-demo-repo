@@ -34,9 +34,9 @@ jobs:
     outputs:
       tag: ${{ steps.set-tag.outputs.TAG }}
 
-    print-version:
-      steps:
-        - run: echo ${{ jobs.determine-image-tag.outputs.tag }}
+  print-version:
+    steps:
+      - run: echo ${{ jobs.determine-image-tag.outputs.tag }}
 
   build-and-push-to-registry:
     name: Build and push image
