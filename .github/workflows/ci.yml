@@ -9,70 +9,91 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
   contents: read
 
 jobs:
-  build:
+  dump_contexts_to_log:
     runs-on: ubuntu-latest
-    # runs-on: ${{ matrix.os }}
-    # strategy:
-    #   matrix:
-    #     os: [ubuntu-latest, windows-latest, macOS-latest]
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-    - name: Gradle Build Action
-      uses: gradle/gradle-build-action@v2.1.5
-      with:
-        arguments: build
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}'
+      - name: Dump matrix context
+        run: echo '${{ toJSON(matrix) }}'
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     # runs-on: ${{ matrix.os }}
+#     # strategy:
+#     #   matrix:
+#     #     os: [ubuntu-latest, windows-latest, macOS-latest]
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: my-artifact
-        path: ./build/libs/actiondemo-0.0.1-SNAPSHOT.jar
+#     steps:
+#     - uses: actions/checkout@v3
 
-  push:
-    needs: build
-    runs-on: ubuntu-latest
+#     - run: |
 
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/download-artifact@v3
-      name: Download Artifact
-      with:
-        name: my-artifact 
-        path: ./artifacts
+# - name: Set up JDK 11
+#   uses: actions/setup-java@v3
+#   with:
+#     java-version: '11'
+#     distribution: 'temurin'
 
-    - name: Display structure of downloaded files
-      run: ls -R  
+# - name: Gradle Build Action
+#   uses: gradle/gradle-build-action@v2.1.5
+#   with:
+#     arguments: build
 
-    - name: Set up QEMU
-      uses: docker/setup-qemu-action@v2
+# - name: Upload Artifact
+#   uses: actions/upload-artifact@v3
+#   with:
+#     name: my-artifact
+#     path: ./build/libs/actiondemo-0.0.1-SNAPSHOT.jar
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+# push:
+#   needs: build
+#   runs-on: ubuntu-latest
 
-    - name: Login to DockerHub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+#   steps:
+#   - uses: actions/checkout@v3
+#   - uses: actions/download-artifact@v3
+#     name: Download Artifact
+#     with:
+#       name: my-artifact
+#       path: ./artifacts
 
-    - name: Build and push
-      uses: docker/build-push-action@v3
-      with:
-        context: .
-        push: true
-        tags: tylerjgabb/action-demo-repo:latest
+#   - name: Display structure of downloaded files
+#     run: ls -R
+
+#   - name: Set up QEMU
+#     uses: docker/setup-qemu-action@v2
+
+#   - name: Set up Docker Buildx
+#     uses: docker/setup-buildx-action@v2
+
+#   - name: Login to DockerHub
+#     uses: docker/login-action@v2
+#     with:
+#       username: ${{ secrets.DOCKER_HUB_USERNAME }}
+#       password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+#   - name: Build and push
+#     uses: docker/build-push-action@v3
+#     with:
+#       context: .
+#       push: true
+#       tags: tylerjgabb/action-demo-repo:latest
 
