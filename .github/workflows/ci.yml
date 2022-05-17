@@ -11,11 +11,9 @@ on:
   workflow_call:
     secrets:
       pushPass:
-        type: string
         required: true
         description: "password for pushing"
       pushUser:
-        type: string
         required: true
         description: "username for pushing"
     inputs:
