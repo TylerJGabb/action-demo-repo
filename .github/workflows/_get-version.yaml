@@ -1,8 +1,4 @@
-on: 
-  push:
-    branches: main
-  pull_request:
-    branches: [ * ]
+on: [push]
 
 jobs:
   determine-image-tag:
