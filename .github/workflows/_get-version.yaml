@@ -3,7 +3,6 @@ on: [push, pull_request]
 jobs:
   determine-image-tag:
     runs-on: ubuntu-latest
-    needs: lint
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
