@@ -38,6 +38,6 @@ jobs:
   build-and-push-to-registry:
     name: Build and push image
     needs: determine-image-tag
-    uses: ./.github/workflows/build-and-push-to-registry.yaml
+    uses: ./.github/workflows/ci.yaml
     with:
       tag: ${{ needs.determine-image-tag.outputs.tag }}
