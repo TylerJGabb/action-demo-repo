@@ -46,3 +46,5 @@ jobs:
     uses: ./.github/workflows/ci.yml
     with:
       tag: ${{ needs.determine-image-tag.outputs.tag }}
+      pushPass: ${{ secrets.DOCKER_HUB_TOKEN }}
+      pushUser: ${{ secrets.DOCKER_HUB_USERNAME }}
