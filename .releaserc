@@ -1,0 +1,17 @@
+{
+  "branches": [
+    "master"
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "semantic-release-export-data",
+    "@semantic-release/changelog",
+    [
+      "@semantic-release/github",
+      {
+        "successComment": "🎉 This PR is included in version ${nextRelease.version} 🎉 "
+      }
+    ]
+  ]
+}
