@@ -19,7 +19,7 @@ jobs:
       - run: npx semantic-release --dry-run
         id: get-next-version
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GL_TOKEN }}
 
       - uses: satackey/action-js-inline@v0.0.2
         id: set-tag
