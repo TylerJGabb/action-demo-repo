@@ -3,6 +3,10 @@ on: [push]
 jobs:
   determine-image-tag:
     runs-on: ubuntu-latest
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -18,8 +22,6 @@ jobs:
       - run: npm ci
       - run: npx semantic-release --dry-run
         id: get-next-version
-        env:
-          GITHUB_TOKEN: ${{ secrets.GL_TOKEN }}
 
       - uses: satackey/action-js-inline@v0.0.2
         id: set-tag
