@@ -10,10 +10,12 @@ env:
 
 jobs:
   set_env:
-    - name: Overriding Env
-      if: ${{ inputs.arg }}
-      run: echo "ENV_ARG=overide" >> $GITHUB_ENV
+    steps:
+      - name: Overriding Env
+        if: ${{ inputs.arg }}
+        run: echo "ENV_ARG=overide" >> $GITHUB_ENV
 
   read_env:
-    - name: Reading Env
-      run: echo ${{ env.ENV_ARG }}
+    steps:
+      - name: Reading Env
+        run: echo ${{ env.ENV_ARG }}
