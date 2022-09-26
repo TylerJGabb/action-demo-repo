@@ -14,15 +14,7 @@ jobs:
     steps:
       - name: Overriding Env
         if: ${{ inputs.arg }}
-        run: |
-          echo "ENV_ARG=overide" >> $GITHUB_ENV
-          echo "OTHER=1234" >> $GITHUB_ENV
+        run: echo "ENV_ARG=overide" >> $GITHUB_ENV
 
-  read_env:
-    needs: set_env
-    runs-on: ubuntu-latest
-    steps:
       - name: Reading Env
-        run: |
-          echo ${{ env.ENV_ARG }}
-          echo ${{ env.OTHER }}
+        run: echo ${{ env.ENV_ARG }}
