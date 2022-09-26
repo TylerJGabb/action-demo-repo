@@ -11,7 +11,7 @@ jobs:
       arg: true
 
   without_override:
-    name: Using Override
+    name: Without Override
     uses: ./.github/workflows/_reusable.yaml
     with:
       arg: false

@@ -10,12 +10,15 @@ env:
 
 jobs:
   set_env:
+    runs-on: ubuntu-latest
     steps:
       - name: Overriding Env
         if: ${{ inputs.arg }}
         run: echo "ENV_ARG=overide" >> $GITHUB_ENV
 
   read_env:
+    needs: set_env
+      runs-on: ubuntu-latest
     steps:
       - name: Reading Env
         run: echo ${{ env.ENV_ARG }}
