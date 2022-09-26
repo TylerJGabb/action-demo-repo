@@ -1,0 +1,19 @@
+on:
+  workflow_call:
+    inputs:
+      arg:
+        type: boolean
+        required: true
+
+env:
+  ENV_ARG: default
+
+jobs:
+  set_env:
+    - name: Overriding Env
+      if: ${{ inputs.arg }}
+      run: echo "ENV_ARG=overide" >> $GITHUB_ENV
+
+  read_env:
+    - name: Reading Env
+      run: echo ${{ env.ENV_ARG }}
